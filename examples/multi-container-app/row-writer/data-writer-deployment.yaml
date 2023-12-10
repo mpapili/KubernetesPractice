@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-writer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-writer
+  template:
+    metadata:
+      labels:
+        app: data-writer
+    spec:
+      containers:
+      - name: data-writer
+        image: data-writer-image
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: DB_HOST
+          value: mysql
+        - name: DB_USER
+          value: "root"
+        - name: DB_PASSWORD
+          value: "password"
+        - name: DB_NAME
+          value: "mydatabase"
+

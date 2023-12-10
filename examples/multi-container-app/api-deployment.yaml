@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-api
+  template:
+    metadata:
+      labels:
+        app: data-api
+    spec:
+      containers:
+      - name: data-api 
+        image: data-api-server
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: DB_HOST
+          value: mysql
+        - name: DB_USER
+          value: "root"
+        - name: DB_PASSWORD
+          value: "password"
+        - name: DB_NAME
+          value: "mydatabase"
+        ports:
+          - containerPort: 8080
+
+
