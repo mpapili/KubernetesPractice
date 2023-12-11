@@ -18,6 +18,9 @@ kubectl apply -f data-writer-deployment.yaml
 kubectl apply -f api-deployment.yaml
 kubectl expose deployment data-api --type=NodePort --port=8080
 
+echo "sleeping for 5 seconds to allow services to start. . ."
+sleep 5
+
 echo "Your API should be reachable at"
 minikube service data-api --url
 echo "-..with the '/data' path"

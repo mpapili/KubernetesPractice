@@ -11,7 +11,10 @@ kubectl create configmap init-db-script --from-file=./db/init-db.sql
 kubectl apply -f full-app-deployment.yaml
 kubectl expose deployment data-api --type=NodePort --port=8080
 
-echo "Your API should be reachable at"
+echo "sleeping for 5 seconds to make sure service is reachable. . ."
+sleep 5
+
+echo "\nYour API should be reachable at"
 minikube service data-api --url
 echo "-..with the '/data' path"
 
