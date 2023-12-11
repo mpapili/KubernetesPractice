@@ -1,0 +1,106 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-api
+  template:
+    metadata:
+      labels:
+        app: data-api
+    spec:
+      containers:
+      - name: data-api 
+        image: data-api-server
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: DB_HOST
+          value: mysql
+        - name: DB_USER
+          value: "root"
+        - name: DB_PASSWORD
+          value: "password"
+        - name: DB_NAME
+          value: "mydatabase"
+        ports:
+          - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  ports:
+  - port: 3306
+  selector:
+    app: mysql
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.7
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "password"
+        - name: MYSQL_DATABASE
+          value: "mydatabase"
+        volumeMounts:
+        - name: init-db-script-volume
+          mountPath: /docker-entrypoint-initdb.d
+        ports:
+        - containerPort: 3306
+      volumes:
+      - name: init-db-script-volume
+        configMap:
+          name: init-db-script
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-writer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-writer
+  template:
+    metadata:
+      labels:
+        app: data-writer
+    spec:
+      containers:
+      - name: data-writer
+        image: data-writer-image
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: DB_HOST
+          value: mysql
+        - name: DB_USER
+          value: "root"
+        - name: DB_PASSWORD
+          value: "password"
+        - name: DB_NAME
+          value: "mydatabase"
+
