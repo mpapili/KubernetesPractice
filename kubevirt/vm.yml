@@ -1,0 +1,31 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: my-vm
+spec:
+  running: true
+  template:
+    metadata:
+      labels:
+        kubevirt.io/vm: my-vm
+    spec:
+      domain:
+        cpu:
+          cores: 2
+        memory:
+          guest: 2.5Gi
+        devices:
+          disks:
+          - name: disk0
+            disk:
+              bus: virtio
+          #interfaces:
+          #- name: default
+          #  masquerade: {}
+      #networks:
+      #- name: default
+      #  pod: {}
+      volumes:
+      - name: disk0
+        persistentVolumeClaim:
+          claimName: vm-image-pvc
