@@ -1,1 +1,3 @@
+# do not commit vm images
 ./*qcow2
+./*img

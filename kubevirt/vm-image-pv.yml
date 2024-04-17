@@ -9,5 +9,5 @@ spec:
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: "/mnt/minikube-share/lubuntu-server.qcow2"
+    path: "/mnt/minikube-share/lubuntu-server.img"
     type: File

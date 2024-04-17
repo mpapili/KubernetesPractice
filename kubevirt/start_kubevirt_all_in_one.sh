@@ -7,7 +7,7 @@
 ./bounce_minikube.sh
 ./setup_kubevirt.sh
 sleep 120 # just to be safe, tune this smarter. . .
-minikube mount $(pwd)/minikube-share:/mnt/minikube-share
+./mount_minikube_share
 ./setup_pvc.sh
 sleep 10
-kubectl apply -f vm.yml
+minikube kubectl --  apply -f vm.yml

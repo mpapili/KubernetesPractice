@@ -19,6 +19,7 @@ spec:
           - name: disk0
             disk:
               bus: virtio
+            bootOrder: 1
           #interfaces:
           #- name: default
           #  masquerade: {}
