@@ -1,0 +1,28 @@
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: test-pv0
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 33Gi
+  hostPath:
+    path: /var/lib/libvirt/images/fedora-lxqt-server.qcow2 
+  storageClassName: standard
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: test-claim0
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 33Gi
+  volumeName: test-pv0
+
