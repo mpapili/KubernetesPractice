@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-from-localhost
+spec:
+  type: NodePort  # For accessing externally, use NodePort or LoadBalancer in cloud setups
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+  selector:
+    app: hello-from-localhost

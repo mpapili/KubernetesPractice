@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-from-localhost
+spec:
+  replicas: 2  # the number of Pods to run
+  selector:
+    matchLabels:
+      app: hello-from-localhost
+  template:
+    metadata:
+      labels:
+        app: hello-from-localhost
+    spec:
+      containers:
+      - name: hello-from-localhost
+        image: registry:5000/hello-from-localhost:v1
+        ports:
+        - containerPort: 8080
