@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: registry
 spec:
+  type: ClusterIP
+  clusterIP: 10.105.241.48
   ports:
   - port: 5000
     targetPort: 5000
