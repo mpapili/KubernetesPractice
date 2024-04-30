@@ -27,7 +27,7 @@ func MyHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Fprintf(w, "failed to get hostname - %w", err)
 	}
-	fmt.Fprintf(w, fmt.Sprintf("hello from %s", hostname))
+	fmt.Fprintf(w, fmt.Sprintf("Czesc from %s (v2 is polish)", hostname))
 }
 
 func main() {
