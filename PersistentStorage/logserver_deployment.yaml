@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logserver
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: logserver 
+  template:
+    metadata:
+      labels:
+        app: logserver 
+    spec:
+      containers:
+      - name: logserver
+        image: registry:5000/logserver:v3
+        volumeMounts:
+        - name: log-volume
+          mountPath: /app/logs
+        ports:
+        - containerPort: 8081
+      volumes:
+      - name: log-volume
+        persistentVolumeClaim:
+          claimName: log-pvc
+
