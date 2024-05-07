@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  labels:
+    app: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template: # a template is just a pod definition within a deployment!
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:latest
+        env:
+        - name: POSTGRES_PASSWORD
+          value: mikedb
+        - name: POSTGRES_USER
+          value: mike
+        - name: POSTGRES_DB
+          value: mikes_db
+        ports:
+        - containerPort: 5432

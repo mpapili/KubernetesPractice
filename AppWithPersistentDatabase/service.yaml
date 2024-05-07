@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  type: NodePort  # For accessing externally, use NodePort or LoadBalancer in cloud setups
+  ports:
+  - port: 5432
+    targetPort: 5432
+    protocol: TCP
+    name: pg-port
+  selector:
+    app: postgres
