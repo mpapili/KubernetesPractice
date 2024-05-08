@@ -26,3 +26,19 @@ spec:
           value: mikes_db
         ports:
         - containerPort: 5432
+        volumeMounts:  # persistent storage
+        - mountPath: /var/lib/postgresql/data
+          name: postgres-storage
+      volumes:
+      - name: postgres-storage
+        persistentVolumeClaim:
+          claimName: postgres-pvc
+      affinity:  # force it to always run on a "database" node
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - "rocky9-server3"  # Will only ever run here
