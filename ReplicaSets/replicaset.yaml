@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-replicaset
+  labels:
+    app: myapp
+    type: front-end
+
+spec:
+  template:
+    ### the template will look a lot like a pod definition
+    ### -because it is!
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+        type: front-end
+    spec:
+      containers:
+        - name: nginx-container
+          image: docker-registry:5000/nginx
+  replicas: 2
+  # even though we define our pod, we need to SELECT it by a label still!
+  selector:
+    matchLabels:
+      type: front-end
