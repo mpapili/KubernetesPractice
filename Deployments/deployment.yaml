@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: mike-pod
-        image: docker-registry:5000/test-py  # our own!
+        image: docker-registry:5000/test-py:1.0.1  # our own!
         ports:
         - containerPort: 5000 # default flask port!
         
