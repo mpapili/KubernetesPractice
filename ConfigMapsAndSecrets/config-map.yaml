@@ -3,6 +3,4 @@ kind: ConfigMap
 metadata:
   name: mikes-configmap
 data:
-  keys:
-    mikevar1=testing
-    mikevar2=alsotesting
+  API_SERVER: http://testhostidk123.com/api/
