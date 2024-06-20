@@ -1,0 +1,23 @@
+apiVersion: apps/v1 # deployments are an app!
+kind: Deployment
+metadata:
+  name: mikes-test-deployment # what is THE DEPLOYMENT'S name
+spec:
+  # spec sort of resembles a replicaset?
+  replicas: 2
+  selector:
+    matchLabels:  # anything can go here! Labels are key-value pairs you choose
+      app: mike-pod
+
+  template:
+    # here is where we define our pod
+    metadata:
+      labels:
+        app: mike-pod
+    spec:
+      containers:
+      - name: mike-pod
+        image: docker-registry:5000/test-py  # our own!
+        ports:
+        - containerPort: 5000 # default flask port!
+        
