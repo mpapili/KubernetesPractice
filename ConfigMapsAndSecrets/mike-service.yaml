@@ -1,0 +1,13 @@
+apiVersion: v1 # "service" is built into the v1 api
+kind: Service
+metadata:
+  name: mike-service
+
+spec:
+  type:  NodePort 
+  ports:
+  - port: 5000 # nginx in pod
+    targetPort: 5000 # nginx in pod
+    nodePort: 31394 # force it to be the same each time
+  selector:
+    app: mike-pod

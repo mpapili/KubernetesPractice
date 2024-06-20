@@ -1,0 +1,40 @@
+apiVersion: apps/v1 # deployments are an app!
+kind: Deployment
+metadata:
+  name: mikes-test-deployment # what is THE DEPLOYMENT'S name
+spec:
+  # spec sort of resembles a replicaset?
+  replicas: 2
+  selector:
+    matchLabels:  # anything can go here! Labels are key-value pairs you choose
+      app: mike-pod
+
+  template:
+    # here is where we define our pod
+    metadata:
+      labels:
+        app: mike-pod
+    spec:
+      containers:
+      - name: mike-pod
+        image: docker-registry:5000/test-py:1.0.1  # our own!
+        ports:
+        - containerPort: 5000 # default flask port!
+        # add environment variables
+        env:
+          # define an environment variable to be fetched from kubernetes secrets
+          - name: API_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: my-secret
+                key: API_TOKEN
+
+        # config maps are loaded as volume mounts!
+        volumeMounts:
+          - name: mikes-configmap
+            mountPath: /etc/config
+      # in the spec but outside of containers, define the volumes
+      volumes:
+      - name: mikes-configmap
+        configMap:
+          name: mikes-configmap
