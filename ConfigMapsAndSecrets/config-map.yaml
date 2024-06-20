@@ -3,4 +3,5 @@ kind: ConfigMap
 metadata:
   name: mikes-configmap
 data:
+  # API_SERVER will have its own file under /etc/config
   API_SERVER: http://testhostidk123.com/api/
