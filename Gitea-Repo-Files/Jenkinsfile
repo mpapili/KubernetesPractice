@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+
+    environment {
+        CODE_PATH = "/home/mike/Downloads/git/DevopsZeroToHero/My-Own-CICD"
+        BUILD_ID = "build-${BUILD_NUMBER}-${UUID.randomUUID().toString()}"
+        VERSION_BASE = '1.0.1' // this is for us to manually maintain for now
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                // This command checks out the source code from the SCM into the Jenkins workspace
+                checkout scm
+            }
+        }
+        stage("env-debug") {
+            steps {
+                // say which worker we're using
+                echo "hello world from ${env.HOSTNAME}"
+                sh 'ls'
+                sh 'pwd'
+                sh 'hostname'
+            }
+        }
+        stage("build") {
+            steps {
+                sh "docker build . -t ${BUILD_ID}"
+            }
+        }
+        stage("run tests") {
+            steps {
+                echo "I would run tests here..."
+            }
+        }
+        stage('Deploy') {
+            when {
+                allOf {
+                    branch 'main'
+                }
+            }
+            steps {
+                // Add deploy steps here
+                echo 'Main branch detected!!'
+                echo 'Deploying...'
+                sh "docker tag ${BUILD_ID} docker-registry:5000/test-py:${VERSION_BASE}"
+                sh "docker push docker-registry:5000/test-py:${VERSION_BASE}"
+            }
+        }
+        stage("Cleanup") {
+            steps {
+                sh "docker rmi ${BUILD_ID}"
+            }
+        }
+    }
+}
