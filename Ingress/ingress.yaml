@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2 # hmm???
+
+spec:
+  ingressClassName: nginx # NOTE - you must define your own ingress-class manifest
+  rules:
+  - http:
+      paths:
+      - path: /web
+        pathType: Prefix 
+        backend:
+          service:
+            name: web-service
+            port:
+              number: 80
+      - path: /api
+        pathType: Prefix 
+        backend:
+          service:
+            name: api-service
+            port:
+              number: 80

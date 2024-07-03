@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nginx-daemon
+  labels:
+    app: nginx
+
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:  # this is just a POD template!
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: docker-registry:5000/nginx
+        ports:
+        - containerPort: 80

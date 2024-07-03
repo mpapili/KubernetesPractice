@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mike-dev 
+
+# you use "---" to separate namespaces, totally separate resources
+--- 
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mike-prod

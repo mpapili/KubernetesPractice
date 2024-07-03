@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod2
+
+spec:
+  containers:
+    - name: mypod2-pod
+      image: docker-registry:5000/ubuntu
+      ports:
+        - containerPort: 80
