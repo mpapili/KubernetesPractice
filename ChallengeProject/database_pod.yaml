@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pg-pod
+  labels:
+    app: my-app
+    role: pg-server
+
+spec:
+  containers:
+  - name: my-pg-pod
+    image: docker-registry:5000/postgres
+    ports:
+      - containerPort: 5432 
+    env:
+      - name: POSTGRES_PASSWORD
+        value: mypass 

@@ -1,0 +1,6 @@
+Make a fortune teller app:
+
+- fortunes are pulled from database
+- api serves fortunes to web ui
+- web ui shows fortunes randomly
+- all kubernetes

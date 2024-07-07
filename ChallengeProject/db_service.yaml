@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-service
+
+spec:
+  type: ClusterIP
+  selector:
+    role: pg-server
+  ports:
+    # Postgres
+  - protocol: TCP
+    name: pg-port
+    port: 5432
+    targetPort: 5432
+
+    # Flask API
+    #- protocol: TCP
+    #name: flask-port
+    #port: 5000 
+    #targetPort: 5000

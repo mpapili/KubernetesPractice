@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: temp-pod
+  labels:
+    app: my-app
+    role: api-server
+
+spec:
+  containers:
+    - name: my-temp-pod
+      image: docker-registry:5000/fortune-api:1.1

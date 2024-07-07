@@ -1,0 +1,54 @@
+pipeline {
+    agent any
+
+    environment {
+        BUILD_ID = "build-${BUILD_NUMBER}-${UUID.randomUUID().toString()}"
+        VERSION_BASE = '1.1'
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage("env-debug") {
+            steps {
+                // say which worker we're using
+                echo "hello world from ${env.HOSTNAME}"
+                sh 'ls'
+                sh 'pwd'
+                sh 'hostname'
+            }
+        }
+        stage("build") {
+            steps {
+                sh "docker build . -t ${BUILD_ID}"
+            }
+        }
+        stage("run tests") {
+            steps {
+                echo "I would run tests here..."
+            }
+        }
+        stage('Deploy') {
+            when {
+                allOf {
+                    branch 'main'
+                }
+            }
+            steps {
+                // Add deploy steps here
+                echo 'Main branch detected!!'
+                echo 'Deploying...'
+                sh "docker tag ${BUILD_ID} docker-registry:5000/fortune-api:${VERSION_BASE}"
+                sh "docker push docker-registry:5000/fortune-api:${VERSION_BASE}"
+            }
+        }
+        stage("Cleanup") {
+            steps {
+                sh "docker rmi ${BUILD_ID}"
+            }
+        }
+    }
+}
+
