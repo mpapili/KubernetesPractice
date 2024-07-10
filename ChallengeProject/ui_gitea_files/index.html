@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Custom HTML</title>
+</head>
+<body>
+  <h1>Hello, k3d!</h1>
+  <p>This is a custom HTML page served by an Nginx pod in a k3d cluster.</p>
+  <button onclick="fetchData()">Fetch Table Descriptions</button>
+  <pre id="results"></pre>
+
+  <script>
+    function fetchData() {
+      fetch('http://172.18.0.3:31961/describe_tables')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('results').textContent = data;
+        })
+        .catch(error => {
+          document.getElementById('results').textContent = 'Error: ' + error;
+        });
+    }
+  </script>
+</body>
+</html>
+
