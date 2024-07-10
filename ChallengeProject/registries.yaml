@@ -1,0 +1,4 @@
+mirrors:
+  "docker-registry:5000":
+    endpoint:
+      - http://docker-registry:5000

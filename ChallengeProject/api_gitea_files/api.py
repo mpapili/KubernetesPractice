@@ -1,8 +1,10 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 import psycopg2
 import os
 
 app = Flask(__name__)
+CORS(app) # enable cors for all routes
 
 # Database configuration
 DB_HOST = 'db-service'
@@ -48,6 +50,10 @@ def describe_tables():
     cur.close()
     conn.close()
     return jsonify(table_descriptions)
+
+@app.route('/mike', methods=['GET'])
+def mike():
+    return {"test": "mike test"}
 
 @app.route('/data', methods=['GET'])
 def get_data():

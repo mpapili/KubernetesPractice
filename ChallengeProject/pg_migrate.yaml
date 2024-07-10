@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-migration
+spec:
+  template:
+    spec:
+      containers:
+      - name: migrate
+        image: docker-registry:5000/postgres
+        env:
+        - name: PGPASSWORD 
+          value: mypass
+        command: ['sh', '-c', 'psql -h db-service -U postgres  -c "CREATE TABLE IF NOT EXISTS fortunes (ID SERIAL PRIMARY KEY, Description TEXT NOT NULL);" && psql -h db-service -U postgres -c "INSERT INTO fortunes (Description) VALUES (''Fortune favors the brave.'');"']
+      restartPolicy: OnFailure
