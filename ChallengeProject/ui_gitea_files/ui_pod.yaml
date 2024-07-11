@@ -8,5 +8,6 @@ metadata:
 spec:
   containers:
   - name: ui-pod
-    image: docker-registry:5000/nginx
+    image: my-test-ui-image 
+    imagePullPolicy: IfNotPresent # local dev only!
 
