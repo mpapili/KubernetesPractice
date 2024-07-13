@@ -22,4 +22,6 @@ echo "the following should succeed:"
 kubectl get pods -n default --token="$TOKEN"
 
 echo "the following should FAIL:"
-kubectl run nginx --image=docker-registry:5000/nginx -n default --token="${TOKEN}"
+#kubectl run nginx --image=docker-registry:5000/nginx -n default --token="${TOKEN}"
+# NOTE - the above will only work if you are not a linux user with an admin .kubeconfig
+kubectl run nginx --image=docker-registry:5000/nginx -n default --as=system:serviceaccount:default:mikes-account
