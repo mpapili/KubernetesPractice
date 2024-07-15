@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ready-deployment
+  labels:
+    app: ready-deployment
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ready-app
+  template:
+    metadata:
+      labels:
+        app: ready-app
+    spec:
+      containers:
+      - name: ready-container
+        image: docker-registry:5000/test-py:1.0.1
+        ports:
+        - name: mainport
+          containerPort: 5000
+
+        # is the pod even alive?
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 10 # give the pod a chance to get running
+          timeoutSeconds: 2 # max amount of time our http requerst should take
+          periodSeconds: 15 # how often to check
+          failureThreshold: 3 # how many chances
+
+        # is the application ready?
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 10
+          timeoutSeconds: 2
+          periodSeconds: 15
+          failureThreshold: 3
