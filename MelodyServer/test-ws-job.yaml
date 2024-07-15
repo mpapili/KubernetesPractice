@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-ws
+spec:
+  template:
+    spec:
+      containers:
+      - name: test-ws
+        image: docker-registry:5000/ubuntu
+        command: ['sh', '-c', "apt update -y && apt install wget -y && wget https://github.com/vi/websocat/releases/download/v1.13.0/websocat.x86_64-unknown-linux-musl && chmod +x ./websocat.x86_64-unknown-linux-musl && echo 'test batch job' | ./websocat.x86_64-unknown-linux-musl --no-close  ws://melody-service:5000/ws "] 
+      restartPolicy: OnFailure 

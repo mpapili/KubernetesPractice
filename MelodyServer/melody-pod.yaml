@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: melody-pod
+  labels:
+    app: melody-server
+
+spec:
+  containers:
+  - name: melody-pod
+    image: melody-server # local only
+    ports:
+    - name: melody-port
+      containerPort: 5000
+    imagePullPolicy: Never # local dev only
