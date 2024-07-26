@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: test-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: rocky9-server-2.nip.io 
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          # what service are we routing to?
+          service:
+            name: test-service # match the name of your service
+            port: 
+              number: 80 # what port on this service?

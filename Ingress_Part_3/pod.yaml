@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-pod
+  labels:
+    app: mike-test
+
+spec:
+
+  selector:
+    matchLabels:
+      app: mike-test
+
+  replicas: 2
+  template:
+    metadata:
+      name: mike-pods
+      labels:
+        app: mike-test
+    spec:
+      containers:
+      - name: mike-container
+        image: docker-registry:5000/test-py:1.0.1
+        ports:
+        - name: flask-port
+          containerPort: 5000
