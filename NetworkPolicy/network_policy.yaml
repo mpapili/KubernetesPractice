@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: np-api-network-policy 
+  ### namespace: your-namespace
+spec:
+  podSelector:
+    matchLabels:
+      app: np-api # which pod does this policy rule over 
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: np-client1 # who can access
+      ports:
+        - protocol: TCP
+          port: 5000 # what port can they access

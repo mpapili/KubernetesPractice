@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: np-test-service
+
+spec:
+  selector:
+    app: np-api # common label on our 3 deployments
+  ports:
+  - name: api
+    protocol: TCP
+    port: 5000
+    targetPort: 5000

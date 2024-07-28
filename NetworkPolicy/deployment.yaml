@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: net-policy-deploy-client1
+
+spec:
+
+  # select the containers we are about to make
+  selector:
+    matchLabels:
+      app: np-client1
+
+  replicas: 1
+
+  template:
+    metadata:
+      name: np-client1-pod
+      labels:
+        app: np-client1 # match our selector
+        app-group: np-test
+    spec:
+      containers:
+      # client1 (SHOULD be able to connect)
+      - name: mike-client-1
+        image: docker-registry:5000/ubuntu
+        command: ["/bin/bash", "-c", "sleep infinity"]
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: net-policy-deploy-client2
+
+spec:
+  # select the containers we are about to make
+  selector:
+    matchLabels:
+      app: np-client2
+
+  replicas: 1
+
+  template:
+    metadata:
+      name: np-client2-pod
+      labels:
+        app: np-client2 # match our selector
+        app-group: np-test
+    spec:
+      containers:
+      # client2 (should NOT be able to connect)
+      - name: mike-client-2
+        image: docker-registry:5000/ubuntu
+        command: ["/bin/bash", "-c", "sleep infinity"]
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: net-policy-deploy-api
+
+spec:
+  # select the containers we are about to make
+  selector:
+    matchLabels:
+      app: np-api
+
+  replicas: 1
+
+  template:
+    metadata:
+      name: np-api-pod
+      labels:
+        app: np-api # match our selector
+        app-group: np-test
+    spec:
+      containers:
+      # Flask API
+      - name: mike-api
+        image: docker-registry:5000/test-py:1.0.1 # flask api
+        ports:
+        - name: flask-port
+          containerPort: 5000
+
