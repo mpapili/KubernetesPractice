@@ -11,7 +11,7 @@ spec:
     matchLabels:
       app: mike-test
 
-  replicas: 2
+  replicas: 6 
   template:
     metadata:
       name: mike-pods

@@ -4,6 +4,13 @@ metadata:
   name: test-ingress
 spec:
   ingressClassName: nginx
+
+  # use our deployed secret to ensure TLS so we can use HTTPS
+  tls:
+  - hosts:
+    - rocky9-server2.nip.io
+    secretName: tls-secret
+
   rules:
   - host: rocky9-server2.nip.io # we will fake the HOST headers to replicate this domain locally
     http:

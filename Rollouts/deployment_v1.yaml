@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fedora-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fedora-app
+  template:
+    metadata:
+      labels:
+        app: fedora-app
+    spec:
+      containers:
+      - name: fedora-container
+        image: fedora:38
+        command: ["sleep"]
+        args: ["infinity"]
+

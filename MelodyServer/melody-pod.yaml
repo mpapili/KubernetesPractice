@@ -8,8 +8,8 @@ metadata:
 spec:
   containers:
   - name: melody-pod
-    image: melody-server # local only
+    image: docker-registry:5000/melody-server # local only
     ports:
     - name: melody-port
       containerPort: 5000
-    imagePullPolicy: Never # local dev only
+        ### imagePullPolicy: Never # local dev only
