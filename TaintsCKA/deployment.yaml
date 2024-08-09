@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mikes-deploy
+  name: mikes-deploy
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: mikes-deploy
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mikes-deploy
+    spec:
+      containers:
+      - image: docker-registry:5000/nginx
+        name: nginx
+        resources: {}
+      # tolerate a taint of type 'mikes-app' for NoSchedule to allow scheduling on tainted node 
+      tolerations:
+      - key: "app"
+        value: "mikes-app"
+        operator: "Equal"
+        effect: "NoSchedule"
+
+status: {}
