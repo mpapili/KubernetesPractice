@@ -1,0 +1,4 @@
+#! /bin/bash
+
+# kubectl create service <service-type> <app-name-selector> --tcp=<port>:<port> --dry-run=client -o yaml
+kubectl create service clusterip  my-oneshot-app --tcp=80:80 --dry-run=client -o yaml

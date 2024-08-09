@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: my-app
+  name: my-app
+spec:
+  replicas: 3 
+  selector:
+    matchLabels:
+      app: my-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - image: docker-registry:5000/test-py:1.0.1
+        name: test-py
+        resources: {}
+status: {}

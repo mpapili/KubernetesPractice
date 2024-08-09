@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: my-replicaset
+
+spec:
+  template:
+    metadata:
+      name: my-pod
+      labels:
+        type: front-end
+    spec:
+      containers:
+        - name: my-container
+          image: docker-registry:5000/nginx
+          ports:
+            - name: nginx-http
+              containerPort: 80
+            - name: nginx-https
+              containerPort: 443
+  replicas: 3
+  selector:
+    matchLabels:
+      type: front-end
