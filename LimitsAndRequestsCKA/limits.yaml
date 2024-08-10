@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: limits-pod
+
+spec:
+  containers:
+    - name: limits-pod
+      image: docker-registry:5000/nginx
+      resources:
+        requests:
+          cpu: "50m"  # 50/1000th's of a vCPU core
+          memory: "50Mi" # ~50mb

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: labels-test
+  name: labels-test
+spec:
+  replicas: 4 
+  selector:
+    matchLabels:
+      app: labels-test
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: labels-test
+    spec:
+      containers:
+      - image: docker-registry:5000/nginx
+        name: nginx
+        resources: {}
+      nodeSelector:
+        size: large
+status: {}

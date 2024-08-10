@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: node-affinity-test
+  name: node-affinity-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-affinity-test
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: node-affinity-test
+    spec:
+      containers:
+      - image: docker-registry:5000/nginx
+        name: nginx
+        resources: {}
+
+      affinity:
+        nodeAffinity:
+          # Yes, this is seriously the name of the key
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: size
+                  operator: In
+                  values:
+                  - Large
+                  - Medium
+status: {}
