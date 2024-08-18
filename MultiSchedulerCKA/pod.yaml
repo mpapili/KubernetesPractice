@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+  namespace: kube-system
+spec:
+  schedulerName: mike-scheduler
+  containers:
+  - name: my-container
+    image: nginx

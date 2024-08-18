@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mikes-daemonset
+  name: mikes-daemonset
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: mikes-daemonset
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mikes-daemonset
+    spec:
+      containers:
+      - image: docker-registry:5000/fluentd
+        name: fluentd
+        resources: {}
+status: {}

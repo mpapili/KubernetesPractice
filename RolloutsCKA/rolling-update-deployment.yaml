@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: fedora-deploy
+  name: fedora-deploy
+
+  # say WHY you're making the change!
+  annotations:
+    kubernetes.io/change-cause: "Modify Fedora Version"
+
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25% # max down as you roll out
+    type: RollingUpdate # ROLLING UPDATE!
+  replicas: 5 
+  selector:
+    matchLabels:
+      app: fedora-deploy
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: fedora-deploy
+    spec:
+      containers:
+        # switch the fedora version from 38 to 39 back and forth!!
+      - image: docker-registry:5000/fedora:39
+        name: fedora
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        command: ["sleep", "infinity"]  # just run it
+      schedulerName: default-scheduler

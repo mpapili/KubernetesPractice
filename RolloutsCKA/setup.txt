@@ -1,0 +1,11 @@
+for this practice, i've set up my docker registry with two versions of Fedora. Fedora 38, and Fedora39
+
+   docker pull fedora:38
+   docker pull fedora:39
+   docker tag fedora:38 docker-registry:5000/fedora:38
+   docker tag fedora:39 docker-registry:5000/fedora:39
+   docker push docker-registry:5000/fedora:38
+   docker push docker-registry:5000/fedora:39
+
+I'll be modifying this version as a 'rollout'
+

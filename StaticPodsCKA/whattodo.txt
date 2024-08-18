@@ -1,0 +1,1 @@
+Place the pod definition file in "/etc/kubernetes/manifests" on a worker node with a running kubelet and the pod should start up on its own! Your control plane can view it but not delete it.
