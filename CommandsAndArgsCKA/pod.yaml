@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sleepy-cmd-test
+
+spec:
+  containers:
+    - name: sleepy-pod
+      image: docker-registry:5000/sleepy-fedora
+      args: ["5000"] # override tiny sleep 5 CMD, but leave 'sleep' entrypoint intact
