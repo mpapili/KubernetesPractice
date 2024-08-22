@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: secret-deployment
+  name: secret-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: secret-deployment
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: secret-deployment
+    spec:
+      containers:
+      - image: docker-registry:5000/secret-server
+        imagePullPolicy: Never ### only use for k3d
+        name: secret-server
+        env:
+          - name: my-secret # name of the env variable in the pod 
+            valueFrom:
+              secretKeyRef:
+                name: mikes-secret
+                key: my-secret
+
+status: {}
