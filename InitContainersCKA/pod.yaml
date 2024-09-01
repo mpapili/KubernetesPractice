@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: init-test
+  name: init-test
+spec:
+  initContainers:
+  - image: docker-registry:5000/fedora:39
+    name: init-startup-container
+    command: ["echo", "hello", "world"]
+  containers:
+  - image: docker-registry:5000/nginx
+    name: real-container
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
