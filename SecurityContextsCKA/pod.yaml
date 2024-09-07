@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: ubuntu-sec
+  name: ubuntu-sec
+spec:
+  containers:
+  - image: docker-registry:5000/ubuntu
+    name: ubuntu-sec
+    securityContext:
+      runAsUser: 1001 # some non-root user
+      capabilities:
+        add: ["NET_RAW"] # allows the use of raw network packets
+    resources: 
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+    command: ["/bin/sh", "-c", "ping -c 3 8.8.8.8"] # ping google.com!
+status: {}
