@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginx
+  name: nginx
+spec:
+  containers:
+  - image: docker-registry:5000/nginx
+    name: nginx
+  imagePullSecrets:
+    - name: my-docker-reg-secret
+status: {}
