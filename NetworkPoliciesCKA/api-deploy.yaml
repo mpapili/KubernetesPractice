@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: netpolicy-api-deploy
+  name: netpolicy-api-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: netpolicy-api-deploy
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: netpolicy-api-deploy
+    spec:
+      containers:
+      - image: docker-registry:5000/fedora:39
+        name: netpolicy-api-deploy
+        command: ["sleep", "infinity"]

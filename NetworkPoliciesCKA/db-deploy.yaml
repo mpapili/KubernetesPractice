@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: netpolicy-db-deploy
+  name: netpolicy-db-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: netpolicy-db-deploy
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: netpolicy-db-deploy
+    spec:
+      containers:
+      - image: docker-registry:5000/test-py:1.0.1 # dummy API on port 5000
+        name: netpolicy-db-deploy
