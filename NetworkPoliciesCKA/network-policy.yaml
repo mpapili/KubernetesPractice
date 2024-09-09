@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: db-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: netpolicy-db-deploy # what app is protected by this?
+  policyTypes:
+    ### we only need Ingress, anything going out is fine
+    - Ingress
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app: netpolicy-api-deploy # what app can access us?
+      ports:
+        - protocol: TCP
+          port: 5000 # our application runs here
+
+  
