@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: persistent-storage-test
+  name: persistent-storage-test
+spec:
+  containers:
+  - image: docker-registry:5000/fedora:39
+    name: persistent-storage-test
+    volumeMounts:
+      - name: our-volume
+        mountPath: /data/
+    command: ["sleep", "infinity"]
+  volumes:
+    - name: our-volume
+      persistentVolumeClaim:
+        claimName: mikes-pvc  # match our pvc name
