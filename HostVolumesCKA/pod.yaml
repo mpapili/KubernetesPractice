@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: local-vol-pod
+  name: local-vol-pod
+spec:
+  containers:
+  - image: docker-registry:5000/fedora:39
+    name: local-vol-pod
+    volumeMounts:
+      - mountPath: /data/foo  # where to mount in the pod
+        name: mikes-volume
+        readOnly: false
+    command: ["sleep", "infinity"]
+
+  volumes:
+    - name: mikes-volume
+      hostPath:
+        path: /data/foo  # directory on worker node (MUST EXIST!)
+        type: Directory  # not required field
