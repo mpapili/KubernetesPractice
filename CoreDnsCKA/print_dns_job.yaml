@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: print-dns 
+spec:
+  template:
+    spec:
+      containers:
+      - name: print-dns 
+        image: docker-registry:5000/fedora:39 
+        ### AFTER RUNNING, USE kubectl logs <podname> to show the nameserver! 
+        command: ["cat", "/etc/resolv.conf"]
+      restartPolicy: Never
+  backoffLimit: 4
