@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2024-09-26T03:01:57Z"
+  labels:
+    app: ingress-deploy
+  name: ingress-deploy
+  namespace: default
+  resourceVersion: "536293"
+  uid: b3fa4374-5509-4246-9eec-748d30dffeb9
+spec:
+  clusterIP: 10.104.238.105
+  clusterIPs:
+  - 10.104.238.105
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: ingress-deploy
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

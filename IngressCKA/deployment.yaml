@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: "2024-09-26T03:00:56Z"
+  generation: 1
+  labels:
+    app: ingress-deploy
+  name: ingress-deploy
+  namespace: default
+  resourceVersion: "536115"
+  uid: 89b7938f-9fdc-4c20-9724-8f30bca5475b
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2 
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: ingress-deploy
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ingress-deploy
+    spec:
+      containers:
+      - image: docker-registry:5000/test-py:1.0.1
+        imagePullPolicy: IfNotPresent
+        name: test-py
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status: {}

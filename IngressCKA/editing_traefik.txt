@@ -1,0 +1,13 @@
+While running locally, you won't have an IP exposed for the traefik service to pick up as the external IP address (this is how you see address <pending> forever). You need to use NodePort!
+
+    kubectl edit svc traefik
+
+then:
+
+    type: NodePort
+
+then find the ports and add:
+
+    NodePort: 30000 
+
+-or similar. Save it, and now you should be able to curl ALL OF YOUR SERVERS at port 30000 and get your ingress routing! Nice!
