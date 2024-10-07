@@ -1,0 +1,13 @@
+JSONPATH is described in the k8s docs, but not very clearly
+
+	kubectl get pod <podname> -o jsonpath='{YOURPATTERNHERE}'
+
+you can do simple stuff like just getting a name
+
+	kubectl get pod <podname> -o jsonpath='{metadata.name}'
+
+or filter arrays
+
+	kubectl get pod <podname> -o jsonpath={'spec.containers[?(@.image=="ubuntu")].name}'
+
+the above loops through all containers in the pod and gets you the NAME field of anything whose IMAGE is UBUNTU

@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: jsonpath-pod
+  name: jsonpath-pod
+spec:
+  containers:
+  - command:
+    - sleep
+    - infinity
+    image: docker-registry:5000/fedora:39
+    name: jsonpath-container
+  - command:
+    - sleep
+    - infinity
+    image: docker-registry:5000/ubuntu
+    name: sidecar-container
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
