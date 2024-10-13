@@ -1,0 +1,7 @@
+There are a lot of pods in ALL NAMESPACES
+
+write a command that outputs to a file all PODS sorted by their AGE (metadata.creationTimestamp)
+
+then write a SECOND command that lists all ports sorted by field "metadata.uid"
+
+
