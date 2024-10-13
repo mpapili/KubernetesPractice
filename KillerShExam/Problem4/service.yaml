@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2024-10-13T22:27:06Z"
+  labels:
+    run: pod2
+  name: service-am-i-ready
+  namespace: default
+  resourceVersion: "3159189"
+  uid: f1333161-3bdf-4ce2-b602-5a092940c743
+spec:
+  clusterIP: 10.109.17.164
+  clusterIPs:
+  - 10.109.17.164
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: pod2
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

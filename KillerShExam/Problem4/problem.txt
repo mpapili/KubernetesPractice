@@ -1,0 +1,9 @@
+Create a pod of image nginx
+
+Configure a Liveness Probe which always returns true.
+
+Configure a readiness probe which checks if "service-am-i-ready:80" is reachable.
+	(they give you the command)
+	this should fail. the service does not exist
+
+Create another pod that will be matched by "service-am-i-ready:80" and respond.
