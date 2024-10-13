@@ -1,0 +1,6 @@
+This problem has a few parts. First, list out all of our k8s contexts. Write their NAMES to a file.
+
+Next, display the current context into a file using kubectl
+
+Then, do the same thing (show current context), but without using kubectl!!
+
