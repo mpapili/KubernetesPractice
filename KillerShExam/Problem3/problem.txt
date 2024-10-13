@@ -1,0 +1,6 @@
+#! /bin/bash
+
+Switch into a context (use another cluster) and then set the replicas of <somepod> from 2 pods down to one pod.
+
+So your instinct is to go for deployments  - THIS IS A TRAP. The deployments are there but they DO NOT MATCH THE POD NAMES. Instead it’s a STATEFUL SET.
+
