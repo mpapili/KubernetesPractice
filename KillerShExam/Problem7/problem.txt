@@ -1,0 +1,5 @@
+the metrics server has alredy been installed
+
+1. show nodes resource usage
+
+2. show pods resource usage
