@@ -1,0 +1,3 @@
+Create a pod of image nginx in the default namespace
+
+Make sure it can ONLY get assigned to rocky9-server2, no other nodes
