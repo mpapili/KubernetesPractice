@@ -1,0 +1,13 @@
+Create a new persistentVolume names safari-pv
+	it should have capacity 2Gi
+	accessMode ReadWriteOnce
+	hostPath /Volumes/Data
+	no storageclass
+
+then create a PVC in namespace 'project-tiger' named 'safari-pvc'
+	- it should request 2Gi storage
+	- accessMode ReadWriteOnce
+	- no storage class
+	- should bind
+
+Finally create a deployment Safari using ubuntu image which mounts that volume at /tmp/safari-data

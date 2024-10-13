@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: safari-pv
+  labels:
+    findme: safari-pv
+spec:
+  hostPath: 
+    path: /tmp/data
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 20Mi

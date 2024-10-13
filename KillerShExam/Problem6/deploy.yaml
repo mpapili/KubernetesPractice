@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: safari-deploy
+  name: safari-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: safari-deploy
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: safari-deploy
+    spec:
+      containers:
+      - image: docker-registry:5000/ubuntu
+        name: ubuntu
+        resources: {}
+        command: ["sleep", "infinity"]
+        volumeMounts:
+        - mountPath: "/tmp/safari-data"
+          name: safari-mount
+      volumes:
+      - name: safari-mount
+        persistentVolumeClaim:
+          claimName: safari-pvc
