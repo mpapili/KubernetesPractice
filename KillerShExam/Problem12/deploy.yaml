@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: fake-daemonset
+    coolLabel: duh
+  name: fake-daemonset
+spec:
+  replicas: 3 
+  selector:
+    matchLabels:
+      app: fake-daemonset
+  template:
+    metadata:
+      labels:
+        app: fake-daemonset
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app: fake-daemonset 
+            topologyKey: "kubernetes.io/hostname"
+      containers:
+      - image: docker-registry:5000/ubuntu
+        name: ubuntu
+        command: ["sleep", "infinity"]
+      - image: docker-registry:5000/fedora
+        name: fedora
+        command: ["sleep", "infinity"]

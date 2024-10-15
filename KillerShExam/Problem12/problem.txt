@@ -1,0 +1,12 @@
+Create a simple deployment with pods pods
+	- give the deployment the label:
+		coolLabel=duh
+
+Each pod should have two containers, each with different images:
+	- fedora
+	- ubuntu
+You can just have them running sleep infinity to keep them up
+
+you have N worker nodes. Request N+1 pods
+	- BUT THE CATCH.. limit your deployment to only deploying ONE POD PER WORKER NODE
+		- this should leave one replica unable to be scheduled if done right!!
