@@ -1,0 +1,12 @@
+Stop the kube-scheduler
+
+try and schedule a pod normally;
+	verify it does not work
+
+manually schedule and run a pod.
+	very it works
+
+THEN bring the kube scheduler back up
+	see both pods working
+
+

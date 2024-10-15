@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: pod2-manual
+  name: pod2-manual
+spec:
+  containers:
+  - image: docker-registry:5000/nginx
+    name: pod2-manual
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  ### YOU CAN FORCE NODENAME LIKE THIS?!
+  nodeName: rocky9-server2
+status: {}

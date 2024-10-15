@@ -1,0 +1,3 @@
+You can use a static pod, but I think what they're after is you specifying node-name instead
+
+first let's undo the static pod
