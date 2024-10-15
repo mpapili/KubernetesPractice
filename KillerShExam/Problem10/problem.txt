@@ -1,0 +1,7 @@
+create a namespace project-hamster
+
+create a service account "processor"
+
+create a ROLE and ROLEBINDING named processor as well
+	- bind the new account to the new role
+	- the new account should be able to CREATE secrets and configmaps only
