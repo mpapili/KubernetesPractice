@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  creationTimestamp: null
+  labels:
+    app: daemon-deployment
+    id: ds-important
+    uuid: "12345"
+  name: daemon-deployment
+spec:
+  selector:
+    matchLabels:
+      app: daemon-deployment
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: daemon-deployment
+    spec:
+      containers:
+      - image: docker-registry:5000/nginx
+        name: nginx
+        resources:
+          requests:
+            memory: "10Mi"  ### "Mi" is for Mebibytes"
+            cpu: "10m"
+status: {}

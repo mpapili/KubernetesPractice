@@ -1,0 +1,7 @@
+create a daemonset with image nginx and labels:
+	- id=ds-important
+	- uuid=12345
+
+The pods should request 10milicore CPU and 10 mebibyte memory
+
+Verify with a command that pods are running on all nodes.

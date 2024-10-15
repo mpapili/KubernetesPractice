@@ -1,0 +1,16 @@
+This one is really easy. List out your control-plane components and list how they’re running. Your options are:
+
+- Not-installed
+	MISSING (or external, like etcd!!)
+
+- Static-pod
+	Static pod, usually defined in “/etc/kubernetes/manifests”
+
+- Pod
+	A hacky setup with a pod running that’s not static!
+
+- Process
+	Like systemd
+
+
+
