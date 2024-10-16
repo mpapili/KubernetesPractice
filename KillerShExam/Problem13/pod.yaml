@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: c1
+  name: multi-container-pod 
+spec:
+  containers:
+  - image: docker-registry:5000/nginx
+    name: c1
+    env:
+      ### this is called a 'downward api'
+      - name: NODE_NAME
+        valueFrom:
+          fieldRef:
+            fieldPath: spec.nodeName
+  - image: docker-registry:5000/busybox
+    name: c2
+    volumeMounts:
+      - mountPath: /tmp/data
+        name: my-vol
+        readOnly: false
+    command: ["sh", "-c", "while true; do date >> /tmp/data/datelog.log; sleep 1; done"]
+  - image: docker-registry:5000/busybox
+    name: c3
+    command: ["tail", "-f", "/tmp/data/datelog.log"]
+    volumeMounts:
+      - mountPath: /tmp/data
+        name: my-vol
+        readOnly: true
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+
+  volumes:
+    - name: my-vol
+      hostPath:
+        path: /tmp/data
+        type: Directory

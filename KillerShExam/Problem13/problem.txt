@@ -1,0 +1,14 @@
+create a pod named multi-container-playground
+pod should have three containers
+	- c1
+	- c2
+	- c3
+c1 is nginx
+	- have the name of the node the pod is running on set
+	as an ENV variable (wtf)
+
+c2 should be busybox and write the output of 'date' every second
+to a shared volume into date.log with a while-loop
+
+c3 should also be busybox and should send the content of date.log to stdout
+	- just tail
