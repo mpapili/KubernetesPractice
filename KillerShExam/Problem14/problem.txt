@@ -1,0 +1,6 @@
+find answers to all of the following questions:
+1 how many master nodes are available?
+2 how many worker nodes are available?
+3. What is the Service CIDR
+4. Which networking CNI plugin is configured and where is its config file?
+5. Which suffix wil static pods hve that run on cluster1-worker1?
