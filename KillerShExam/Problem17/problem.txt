@@ -1,0 +1,9 @@
+Create a pod using docker-registry:5000/alpine
+
+ssh onto the worker node that the pod gets assined to
+
+use crictl to get the pod's ID of the container and the "info.runtimeType" to a file"
+
+write the logs of the container to some other file
+
+
