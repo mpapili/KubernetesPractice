@@ -1,0 +1,7 @@
+Write a command that will show kubectl events in the cluster \
+	and sort them by “metadata.creationTimestamp”
+
+Kill the kube-proxy pod temporarily. Print the event to a file
+
+Kill the containerd container of the kube-proxy pod rather than \
+	killing the pod, what does the event look like now?

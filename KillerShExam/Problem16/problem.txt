@@ -1,0 +1,6 @@
+create a namespace called cka-master
+
+write the names of all namespaced k8s resources
+(pod, secret, configmap, etc..) into a file
+
+find the namespace with the most ROLES defined in it
