@@ -1,0 +1,7 @@
+find certs for kube-apiserver
+
+find the expiration date with kubeadm
+
+find the expiration date without kubeadm
+
+renew the cert with kubeadm
