@@ -1,0 +1,8 @@
+Create a namespace secret
+
+Create a busybox pod in namespace secret
+
+Create a secret which contains user=user1234 password=pass1234 
+
+Set it up so that the $USER and $PASSWORD env variables are loaded in your first pod from the secret you just made.
+
