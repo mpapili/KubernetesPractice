@@ -1,0 +1,5 @@
+create a static nginx pod which requests 10m CPU and 20Mi memory
+
+expose it via a service named static-pod-service on port 80
+
+
