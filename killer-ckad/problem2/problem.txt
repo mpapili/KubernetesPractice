@@ -1,0 +1,3 @@
+create a pod of image ubuntu in default namespace named 'pod1' with container named 'pod1-container'.
+
+Your manager wants a command manually on occasion to output the status of that exact pod. Write the command to a script using kubectl

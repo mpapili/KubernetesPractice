@@ -1,0 +1,1 @@
+the devops team wants a list of all namespaces. Get the list and output to a file
