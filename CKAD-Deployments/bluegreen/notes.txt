@@ -1,0 +1,6 @@
+the idea is you have two totally separate deployments with slightly
+different tags. Both are running.
+
+your service is all that gets updated on the "Switch" - change selector from blue to green
+
+then delete the old deploy
