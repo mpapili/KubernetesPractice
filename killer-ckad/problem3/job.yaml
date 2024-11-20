@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: testjob 
+  namespace: neptune
+spec:
+  completions: 10
+  parallelism: 5 
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: testjob 
+        image: busybox 
+        command: ["sh", "-c", "sleep 10 && date"]
+  backoffLimit: 4
+

@@ -1,0 +1,9 @@
+create a job template
+
+run image busybox
+
+execute 'sleep 2 && date'
+
+in namespace neptune
+
+run 10 times total; 5 runs should happen in-parallel
