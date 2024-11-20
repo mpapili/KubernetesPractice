@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: testdeploy
+    version: blue
+  name: testdeploy-blue
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: testdeploy
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: testdeploy
+        version: blue
+    spec:
+      containers:
+      - image: docker-registry:5000/test-app:1.01
+        name: test-app
+        resources: {}
+status: {}
