@@ -1,0 +1,5 @@
+This is an attempt to one-shot everything in:
+
+https://gist.github.com/debu999/55571e12430c5064c4e1de6e5b21aefe
+
+and see how close/far we get

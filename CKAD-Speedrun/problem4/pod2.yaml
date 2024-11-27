@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: testpod2
+    id: cross-server-ready
+  name: testpod2
+spec:
+  containers:
+  - image: nginx
+    name: testpod2
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

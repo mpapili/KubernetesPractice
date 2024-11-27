@@ -1,0 +1,8 @@
+create a persistentvolume named safari-pv
+	give it 20Mi
+	accessMode ReadWriteOnce
+	hostPath /tmp/data
+
+make a pvc named safari-pvc - requesting 20Mi of storage, same access mod readwriteonce
+
+then make a deployment that mounts it

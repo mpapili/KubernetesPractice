@@ -1,0 +1,1 @@
+single pod of image nginx in ns default Pod name is pod1 and container is pod1-container pod scheduled on master node no new label to be added

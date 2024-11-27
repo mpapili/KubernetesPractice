@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: StatefulSet 
+metadata:
+  labels:
+    app: teststatefulset
+  name: teststatefulset
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: teststatefulset
+  template:
+    metadata:
+      labels:
+        app: teststatefulset
+    spec:
+      containers:
+      - image: rockylinux:9
+        name: rockylinux
+        command: ["/bin/bash", "-c", "sleep infinity"]

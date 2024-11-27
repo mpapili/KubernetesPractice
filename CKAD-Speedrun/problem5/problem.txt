@@ -1,0 +1,5 @@
+write a command that finds all pods sorted by their AGE (metadata.creationtimestamp)
+
+write another that sorts them by metadata.uid
+
+use native kubectl sorting only

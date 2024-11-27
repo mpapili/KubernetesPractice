@@ -1,0 +1,8 @@
+create a pod that is not ready until it can reach http://service-am-i-ready:80
+	-> should not be ready
+
+create another pod hosting nginx at port 80
+	label it cross-server-ready
+expose it with a service
+
+pod1 should be ready if you succeeded

@@ -1,0 +1,6 @@
+create a stateful set running pods
+	- should have 2 replicas per node
+		- scale down to 3
+
+without volumes what's one thing that's 'stateful' here?
+	-> THE POD NAMES!

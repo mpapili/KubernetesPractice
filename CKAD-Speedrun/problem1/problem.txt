@@ -1,0 +1,5 @@
+get contexts
+show current context
+show current context without kubectl
+get current context (name only)
+
